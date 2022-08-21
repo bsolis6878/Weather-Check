@@ -11,13 +11,37 @@
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-    <aside>
-        <div>
-            <h1>Search for a city:</h1>
-            <input />
-            <button>Search</button>
-        </div>
-    </aside>
+    <!-- Parent div -->
+    <main>
+        <!-- Left side div -->
+        <aside>
+            <!-- Div to search -->
+            <div class="search-div">
+                <h1>Search for a city:</h1>
+                <input />
+                <button>Search</button>
+            </div>
+            <!-- Div for previous searches -->
+            <div>
+
+            </div>
+        </aside>
+        <!-- Right side div, contains current and forecast -->
+        <article>
+            <!-- Display current data -->
+            <div class="current-forecast">
+                <h1>City</h1>
+                <span>Temp</span>
+                <span>Wind</span>
+                <span>Humidity</span>
+                <span>UV Index</span>
+            </div>
+            <!-- Display forecast data -->
+            <div class="future-forecast">
+                <h1>5-Day Forecast</h1>
+            </div>
+        </article>
+    </main>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
