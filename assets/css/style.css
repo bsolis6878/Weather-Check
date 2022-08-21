@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to bottom right, cyan, violet);
+    font-size: 22px;
+    height: 100px;
+}
