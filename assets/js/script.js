@@ -6,7 +6,9 @@ var currentWind = document.querySelector("#current-wind");
 var currentHumidity = document.querySelector("#current-humidity");
 var forecast = document.querySelector(".future-forecast");
 var forecastText = document.querySelector("#five-day");
+var searchBox = document.querySelector("#previous-searches");
 
+// search button
 citySearch.addEventListener("click", function() {
     var cityName = city.value;
     weatherData(cityName);
@@ -26,6 +28,7 @@ var weatherData = function(location) {
                 currentTemp.textContent = "Current temperature: " + data.main.temp + " °F";
                 currentWind.textContent = "Current wind speed: " + data.wind.speed + " MPH";
                 currentHumidity.textContent = "Current humidity: " + data.main.humidity + "%";
+                searchHistory(location);
             })
         } else {
             alert("Something went wrong with your request.");
@@ -41,6 +44,7 @@ var forecastData = function(location) {
        if (response.ok) {
            response.json().then(function(data) {
                 forecastText.textContent = "5 day forecast";
+
                 // creates a seperate div for each day in 5-day forecast
                 for (i = 0; i < data.list.length; i = i + 8) {
                     // div for each day
@@ -68,4 +72,13 @@ var forecastData = function(location) {
            })
        }
     })
+}
+
+
+var searchHistory = function(location) {
+    // for each search, adds a button
+    var historyButton = document.createElement("button")
+    historyButton.className = "history";
+    historyButton.textContent = location;
+    searchBox.appendChild(historyButton);
 }

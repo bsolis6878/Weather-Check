@@ -58,6 +58,20 @@ aside {
     font-weight: bold;
 }
 
+/* Search history and dynamically added buttons */
+#previous-searches {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.history {
+    margin: 20px 0px;
+    width: 100%;
+    font-weight: bold;
+}
+
 /* Styling for right div */
 
 article {
