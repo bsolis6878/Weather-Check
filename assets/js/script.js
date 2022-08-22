@@ -43,8 +43,11 @@ var forecastData = function(location) {
     fetch(apiUrl).then(function(response) {
        if (response.ok) {
            response.json().then(function(data) {
-                forecastText.textContent = "5 day forecast";
+                // clears forecast div before every search
+                forecast.innerHTML="";
 
+                forecastText.textContent = "5 day forecast";
+                
                 // creates a seperate div for each day in 5-day forecast
                 for (i = 0; i < data.list.length; i = i + 8) {
                     // div for each day
