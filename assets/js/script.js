@@ -42,28 +42,27 @@ var forecastData = function(location) {
            response.json().then(function(data) {
                 forecastText.textContent = "5 day forecast";
                 // creates a seperate div for each day in 5-day forecast
-                for (i = 0; i < data.length; i = i + 8) {
-                    console.log(data);
+                for (i = 0; i < data.list.length; i = i + 8) {
                     // div for each day
                     var forecastBox = document.createElement("div");
                     forecastBox.className = "forecast-day";
                     forecast.appendChild(forecastBox);
                     // span for date
                     var date = document.createElement("span");
-                    date.textContent = data[i].dt_txt;
+                    date.textContent = data.list[i].dt_txt.split(" ")[0];
                     forecastBox.appendChild(date);
                     // icon will go here
                     // span for temp
                     var temp = document.createElement("span");
-                    temp.textContent = "Temp: " + data[i].main.temp + " °F";
+                    temp.textContent = "Temp: " + data.list[i].main.temp + " °F";
                     forecastBox.appendChild(temp);
                     // span for wind speed
                     var wind = document.createElement("span");
-                    wind.textContent = "Wind: " + data[i].wind.speed + " MPH";
+                    wind.textContent = "Wind: " + data.list[i].wind.speed + " MPH";
                     forecastBox.appendChild(wind);
                     // span for humidity
                     var humidity = document.createElement("span");
-                    humidity.textContent = "Humidity: " + data[i].main.humidity + "%";
+                    humidity.textContent = "Humidity: " + data.list[i].main.humidity + "%";
                     forecastBox.appendChild(humidity);
                 }
            })
