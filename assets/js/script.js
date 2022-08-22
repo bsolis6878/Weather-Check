@@ -12,7 +12,7 @@ var searchBox = document.querySelector("#previous-searches");
 citySearch.addEventListener("click", function() {
     var cityName = city.value;
     weatherData(cityName);
-    forecastData(cityName);
+    searchHistory(cityName);
     city.value = "";
 })
 
@@ -28,7 +28,7 @@ var weatherData = function(location) {
                 currentTemp.textContent = "Current temperature: " + data.main.temp + " °F";
                 currentWind.textContent = "Current wind speed: " + data.wind.speed + " MPH";
                 currentHumidity.textContent = "Current humidity: " + data.main.humidity + "%";
-                searchHistory(location);
+                forecastData(location);
             })
         } else {
             alert("Something went wrong with your request.");
@@ -41,13 +41,12 @@ var forecastData = function(location) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&units=imperial&APPID=5a42b591b4bd6478adc5120147487428"
 
     fetch(apiUrl).then(function(response) {
-       if (response.ok) {
            response.json().then(function(data) {
                 // clears forecast div before every search
                 forecast.innerHTML="";
 
                 forecastText.textContent = "5 day forecast";
-                
+
                 // creates a seperate div for each day in 5-day forecast
                 for (i = 0; i < data.list.length; i = i + 8) {
                     // div for each day
@@ -73,15 +72,19 @@ var forecastData = function(location) {
                     forecastBox.appendChild(humidity);
                 }
            })
-       }
     })
 }
 
 
 var searchHistory = function(location) {
-    // for each search, adds a button
+    // for each search, adds a button and appends it
     var historyButton = document.createElement("button")
     historyButton.className = "history";
     historyButton.textContent = location;
     searchBox.appendChild(historyButton);
+
+    // on button click updates weather data with that locatin's data
+    historyButton.onclick = function() {
+        weatherData(location);
+    }
 }
