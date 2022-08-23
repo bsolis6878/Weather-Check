@@ -57,9 +57,30 @@ var forecastData = function(location) {
                     forecast.appendChild(forecastBox);
                     // span for date
                     var date = document.createElement("span");
-                    date.innerHTML = "<h2>" + data.list[i].dt_txt.split(" ")[0] + "</h2>";
+                    date.innerHTML = "<h2>" + data.list[i].dt_txt.slice(5, 10).replace("-", "/") + "</h2>";
                     forecastBox.appendChild(date);
-                    // icon will go here
+                    // adds images based on weather
+                    if (data.list[i].weather[0].description === "clear sky") {
+                        var image = document.createElement("img");
+                        image.setAttribute("src", "./assets/images/sunny.svg")
+                        forecastBox.appendChild(image);
+                    } else if (data.list[i].weather[0].description === "few clouds" || data.list[i].weather[0].description === "scattered clouds" || data.list[i].weather[0].description === "broken clouds" || data.list[i].weather[0].description === "overcast clouds") {
+                        var image = document.createElement("img");
+                        image.setAttribute("src", "./assets/images/cloudy.svg")
+                        forecastBox.appendChild(image);
+                    } else if (data.list[i].weather[0].description === "light rain" || data.list[i].weather[0].description === "rain" || data.list[i].weather[0].description === "thunderstorm" || data.list[i].weather[0].description === "shower rain" || data.list[i].weather[0].description === "moderate rain") {
+                        var image = document.createElement("img");
+                        image.setAttribute("src", "./assets/images/rain.svg")
+                        forecastBox.appendChild(image);
+                    } else if (data.list[i].weather[0].description === "snow") {
+                        var image = document.createElement("img");
+                        image.setAttribute("src", "./assets/images/snow.svg")
+                        forecastBox.appendChild(image);
+                    } else if (data.list[i].weather[0].description === "mist") {
+                        var image = document.createElement("img");
+                        image.setAttribute("src", "./assets/images/mist.svg")
+                        forecastBox.appendChild(image);
+                    }
                     // span for temp
                     var temp = document.createElement("span");
                     temp.textContent = "Temp: " + data.list[i].main.temp + " °F";

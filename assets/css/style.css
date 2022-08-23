@@ -8,6 +8,12 @@ html, body {
 
 body {
     background-color: #C3EDFF;
+    font-family: 'Lato', sans-serif;
+}
+
+img {
+    height: 80px;
+    width: 80px;
 }
 
 header {
