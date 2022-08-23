@@ -1,5 +1,6 @@
 var citySearch = document.querySelector("button");
 var city = document.querySelector("input");
+currentForecast = document.querySelector(".current-forecast")
 var currentCity = document.querySelector("#current-city");
 var currentTemp = document.querySelector("#current-temp");
 var currentWind = document.querySelector("#current-wind");
@@ -24,10 +25,11 @@ var weatherData = function(location) {
         if (response.ok) {
             response.json().then(function(data) {
                 // changes text to data from fetch
-                currentCity.textContent = data.name;
+                currentCity.innerHTML = "<u>" + data.name + "</u>";
                 currentTemp.textContent = "Current temperature: " + data.main.temp + " °F";
                 currentWind.textContent = "Current wind speed: " + data.wind.speed + " MPH";
                 currentHumidity.textContent = "Current humidity: " + data.main.humidity + "%";
+                currentForecast.classList = "current-forecast forecast-box";
                 forecastData(location);
             })
         } else {
@@ -45,7 +47,7 @@ var forecastData = function(location) {
                 // clears forecast div before every search
                 forecast.innerHTML="";
 
-                forecastText.textContent = "5 day forecast";
+                forecastText.textContent = "5 day forecast:";
 
                 // creates a seperate div for each day in 5-day forecast
                 for (i = 0; i < data.list.length; i = i + 8) {
@@ -55,7 +57,7 @@ var forecastData = function(location) {
                     forecast.appendChild(forecastBox);
                     // span for date
                     var date = document.createElement("span");
-                    date.textContent = data.list[i].dt_txt.split(" ")[0];
+                    date.innerHTML = "<h2>" + data.list[i].dt_txt.split(" ")[0] + "</h2>";
                     forecastBox.appendChild(date);
                     // icon will go here
                     // span for temp
