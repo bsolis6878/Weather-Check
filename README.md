@@ -1,6 +1,6 @@
 An application for checking the weather in any city!
 
-[!website](/assets/images/website.jpg)
+![website](/assets/images/website.jpg)
 
 Deployed link:
 
